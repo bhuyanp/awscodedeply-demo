@@ -2,8 +2,8 @@ publish-job:
   runs-on: ubuntu-latest
   needs: [build_and_test]
   steps:
-    - run: mkdir staging && cp target/sample*.jar staging
-    - uses: actions/upload-artifact@v3
-        with:
-          name: Package
-          path: staging
+  - run: mkdir staging && cp target/sample*.jar staging
+  - uses: actions/upload-artifact@v3
+    with:
+      name: my-artifact
+      path: staging/sample*.jar
