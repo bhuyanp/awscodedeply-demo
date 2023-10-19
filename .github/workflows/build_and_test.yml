@@ -34,9 +34,9 @@ jobs:
 
         - name: Upload artifact from staging
           uses: actions/upload-artifact@v3
-            with:
-              name: my-artifact
-              path: staging/sample*.jar
+          with:
+            name: my-artifact
+            path: staging/sample*.jar
 
 
 
