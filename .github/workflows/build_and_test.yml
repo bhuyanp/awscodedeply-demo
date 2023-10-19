@@ -29,9 +29,10 @@ jobs:
     
         - name: Build and test project with Maven
           run: mvn clean install
-                 - run: mkdir staging && cp target/sample*.jar staging
+        - name: Copy jar to staging
+          run: mkdir staging && cp target/sample*.jar staging
 
-        - name: Upload artifact
+        - name: Upload artifact from staging
           uses: actions/upload-artifact@v3
             with:
               name: my-artifact
