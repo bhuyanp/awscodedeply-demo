@@ -1,6 +1,18 @@
-### Getting Started
+# Deploy Springboot Application to AWS ECR using GitHub Action
+## Introduction
+This is a sample project with simple springboot application. It is built and deployed to AWS ECR using GitHub action
 
-## Create AWS ECR
+Below are the high level steps:
+- Triggers on commit to main branch
+- [maven-build] Maven package build is invoked
+- [maven-build] Application jar and docker files are uploaded to staging area
+- [docker-build] Artifacts are downloaded from staging area
+- [docker-build] Login to Amazon ECR 
+- [docker-build] Build, tag, and push image to Amazon ECR
+
+## Getting Started
+
+### Create AWS ECR
 
 https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-console.html
 
@@ -9,7 +21,7 @@ Create a private ECR(awscodebuild-demo) and copy it's URI.
 It will be something like the one below.
 [IMAGEID].dkr.ecr.us-east-1.amazonaws.com/awscodebuild-demo
 
-## Configure AWS CLI
+### Configure AWS CLI
 
 aws configure
 
