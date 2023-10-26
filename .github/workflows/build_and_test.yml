@@ -70,7 +70,7 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         env:
-          REGISTRY: 736094578720.dkr.ecr.us-east-1.amazonaws.com
+          REGISTRY: ${{ secrets.ECR_ADDRESS }}
           REPOSITORY: awscodebuild-demo
           IMAGE_TAG: ${{ github.sha }}
         run: |
