@@ -20,25 +20,37 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: Copy jar to staging
-        run: mkdir staging && cp target/sample*.jar staging
-      - name: Copy Dockerfile to staging
-        run: cp Dockerfile staging
+      # - name: Copy jar to staging
+      #   run: mkdir staging && cd staging && mkdir target && cp target/sample*.jar target
+      # - name: Copy Dockerfile to staging
+      #   run: cp Dockerfile staging
 
-      - name: Upload artifact from staging
+      - name: Upload jar
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: staging/*
+          name: jar
+          path: target/sample*.jar
+
+      - name: Upload docker file
+        uses: actions/upload-artifact@v3
+        with:
+          name: dockerfil
+          path: Dockerfile
 
   docker-build:
     needs: maven-build
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
+      - name: Download Jar
         uses: actions/download-artifact@v3
         with:
-          name: my-artifact
+          name: jar
+          path: target/
+
+      - name: Download DockerFile
+        uses: actions/download-artifact@v3
+        with:
+          name: dockerfil
 
       - name: Display structure of downloaded files
         run: ls -R
